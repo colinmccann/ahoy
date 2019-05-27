@@ -1,6 +1,5 @@
 require "cgi"
 require "device_detector"
-require "public_suffix"
 
 module Ahoy
   class VisitProperties
@@ -37,9 +36,9 @@ module Ahoy
     end
 
     def traffic_properties
-      host = URI.parse(referrer).host rescue nil
+      uri = URI.parse(referrer) rescue nil
       {
-        referring_domain: (PublicSuffix.domain(host).first(255) rescue nil)
+        referring_domain: uri.try(:host).try(:first, 255)
       }
     end
 
