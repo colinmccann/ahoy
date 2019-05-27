@@ -1,3 +1,10 @@
+## 3.0.0 [unreleased]
+
+- Made Device Detector the default user agent parser
+- Made v2 the default bot detection version
+- Removed search keyword detection (most search engines today prevent this)
+- Removed support for Rails < 5
+
 ## 2.2.1
 
 - Updated Ahoy.js to 0.3.4
