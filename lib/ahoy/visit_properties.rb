@@ -1,4 +1,6 @@
+require "addressable/uri"
 require "device_detector"
+require "public_suffix"
 
 module Ahoy
   class VisitProperties
@@ -29,8 +31,9 @@ module Ahoy
     end
 
     def traffic_properties
+      host = Addressable::URI.parse(referrer).host rescue nil
       {
-        referring_domain: (Addressable::URI.parse(referrer).host.first(255) rescue nil)
+        referring_domain: (PublicSuffix.domain(host).first(255) rescue nil)
       }
     end
 

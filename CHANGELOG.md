@@ -1,5 +1,6 @@
 ## 3.0.0 [unreleased]
 
+- Referring domain no longer includes subdomain
 - Made Device Detector the default user agent parser
 - Made v2 the default bot detection version
 - Removed search keyword detection (most search engines today prevent this)
