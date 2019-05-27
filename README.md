@@ -635,6 +635,17 @@ Send a `POST` request to `/ahoy/events` with `Content-Type: application/json` an
 
 Ahoy 3.0 removes support for Rails 4.2 and a number of dependencies.
 
+It also removes subdomains for the referring domain. To keep the previous behavior, edit your store:
+
+```ruby
+class Ahoy::Store < Ahoy::DatabaseStore
+  def track_visit(data)
+    data[:referring_domain] = (URI.parse(data[:referrer]).host rescue nil)
+    super(data)
+  end
+end
+```
+
 If you installed Ahoy before 2.1 and want to keep legacy user agent parsing and bot detection, add to your Gemfile:
 
 ```ruby
