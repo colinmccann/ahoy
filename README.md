@@ -31,12 +31,12 @@ Restart your web server, open a page in your browser, and a visit will be create
 Track your first event from a controller with:
 
 ```ruby
-ahoy.track "My first event", {language: "Ruby"}
+ahoy.track "My first event", language: "Ruby"
 ```
 
 ### JavaScript, Native Apps, & AMP
 
-First, enable the API in `config/initializers/ahoy.rb`:
+Enable the API in `config/initializers/ahoy.rb`:
 
 ```ruby
 Ahoy.api = true
@@ -44,7 +44,7 @@ Ahoy.api = true
 
 And restart your web server.
 
-#### JavaScript
+### JavaScript
 
 For Rails 6 / Webpacker, run:
 
@@ -69,10 +69,6 @@ Track an event with:
 ```javascript
 ahoy.track("My second event", {language: "JavaScript"});
 ```
-
-#### Native Apps & AMP
-
-No additional server-side setup is needed. Check out [the docs](#native-apps) to get started.
 
 ### GDPR Compliance
 
