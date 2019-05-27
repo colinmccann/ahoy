@@ -631,6 +631,23 @@ Send a `POST` request to `/ahoy/events` with `Content-Type: application/json` an
 
 ## Upgrading
 
+### 3.0
+
+Ahoy 3.0 removes support for Rails 4.2 and a number of dependencies.
+
+If you installed Ahoy before 2.1 and want to keep legacy user agent parsing and bot detection, add to your Gemfile:
+
+```ruby
+gem "browser", "~> 2.0"
+gem "user_agent_parser"
+```
+
+And add to `config/initializers/ahoy.rb`:
+
+```ruby
+Ahoy.user_agent_parser = :legacy
+```
+
 ### 2.2
 
 Ahoy now ships with better bot detection if you use Device Detector. This should be more accurate but can significantly reduce the number of visits recorded. For existing installs, it’s opt-in to start. To use it, add to `config/initializers/ahoy.rb`:

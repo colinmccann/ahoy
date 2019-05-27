@@ -1,7 +1,4 @@
-require "browser"
 require "device_detector"
-require "referer-parser"
-require "user_agent_parser"
 
 module Ahoy
   class VisitProperties
@@ -32,12 +29,8 @@ module Ahoy
     end
 
     def traffic_properties
-      # cache for performance
-      @@referrer_parser ||= RefererParser::Parser.new
-
       {
-        referring_domain: (Addressable::URI.parse(referrer).host.first(255) rescue nil),
-        search_keyword: (@@referrer_parser.parse(@referrer)[:term].first(255) rescue nil).presence
+        referring_domain: (Addressable::URI.parse(referrer).host.first(255) rescue nil)
       }
     end
 
