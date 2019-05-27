@@ -1,4 +1,4 @@
-require "addressable/uri"
+require "cgi"
 require "device_detector"
 require "public_suffix"
 
@@ -20,18 +20,24 @@ module Ahoy
     private
 
     def utm_properties
-      landing_uri = Addressable::URI.parse(landing_page) rescue nil
-      landing_params = (landing_uri && landing_uri.query_values) || {}
+      landing_params = {}
+      begin
+        landing_uri = URI.parse(landing_page)
+        # could also use Rack::Utils.parse_nested_query
+        landing_params = CGI.parse(landing_uri.query) if landing_uri
+      rescue
+        # do nothing
+      end
 
       props = {}
       %w(utm_source utm_medium utm_term utm_content utm_campaign).each do |name|
-        props[name.to_sym] = params[name] || landing_params[name]
+        props[name.to_sym] = params[name] || landing_params[name].try(:first)
       end
       props
     end
 
     def traffic_properties
-      host = Addressable::URI.parse(referrer).host rescue nil
+      host = URI.parse(referrer).host rescue nil
       {
         referring_domain: (PublicSuffix.domain(host).first(255) rescue nil)
       }
