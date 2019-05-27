@@ -44,7 +44,9 @@ Ahoy.api = true
 
 And restart your web server.
 
-For JavaScript and Rails 6 / Webpacker, run:
+#### JavaScript
+
+For Rails 6 / Webpacker, run:
 
 ```sh
 yarn add ahoy.js
@@ -56,7 +58,7 @@ And add to `app/javascript/packs/application.js`:
 import ahoy from "ahoy.js";
 ```
 
-For JavaScript and Rails 5 / Sprockets, add to `app/assets/javascripts/application.js`:
+For Rails 5 / Sprockets, add to `app/assets/javascripts/application.js`:
 
 ```javascript
 //= require ahoy
@@ -68,13 +70,9 @@ Track an event with:
 ahoy.track("My second event", {language: "JavaScript"});
 ```
 
-For Android, check out [Ahoy Android](https://github.com/instacart/ahoy-android). For other platforms, see the [API spec](#api-spec).
+#### Native Apps & AMP
 
-For AMP, track an event with:
-
-```erb
-<%= amp_event "My third event", language: "AMP" %>
-```
+No additional server-side setup is needed. Check out [the docs](#native-apps) to get started.
 
 ### GDPR Compliance
 
@@ -113,23 +111,7 @@ Ahoy.server_side_visits = :when_needed
 
 ### Events
 
-Each event has a `name` and `properties`.
-
-There are several ways to track events.
-
-#### JavaScript
-
-```javascript
-ahoy.track("Viewed book", {title: "The World is Flat"});
-```
-
-or track events automatically with:
-
-```javascript
-ahoy.trackAll();
-```
-
-See [Ahoy.js](https://github.com/ankane/ahoy.js) for a complete list of features.
+Each event has a `name` and `properties`. There are several ways to track events.
 
 #### Ruby
 
@@ -137,7 +119,7 @@ See [Ahoy.js](https://github.com/ankane/ahoy.js) for a complete list of features
 ahoy.track "Viewed book", title: "Hot, Flat, and Crowded"
 ```
 
-or track actions automatically with:
+Track actions automatically with:
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -150,6 +132,20 @@ class ApplicationController < ActionController::Base
   end
 end
 ```
+
+#### JavaScript
+
+```javascript
+ahoy.track("Viewed book", {title: "The World is Flat"});
+```
+
+Track events automatically with:
+
+```javascript
+ahoy.trackAll();
+```
+
+See [Ahoy.js](https://github.com/ankane/ahoy.js) for a complete list of features.
 
 #### Native Apps
 
