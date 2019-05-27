@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "railties", ">= 5"
   spec.add_dependency "addressable"
   spec.add_dependency "geocoder", ">= 1.4.5"
-  spec.add_dependency "request_store"
   spec.add_dependency "safely_block", ">= 0.2.1"
   spec.add_dependency "device_detector"
 
