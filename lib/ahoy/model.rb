@@ -2,7 +2,7 @@ module Ahoy
   module Model
     def visitable(name = :visit, **options)
       class_eval do
-        belongs_to(name, class_name: "Ahoy::Visit", optional: true, **safe_options)
+        belongs_to(name, class_name: "Ahoy::Visit", optional: true, **options)
         before_create :set_ahoy_visit
       end
       class_eval %{
